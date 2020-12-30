@@ -1,0 +1,19 @@
+Resources:
+  Ec2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: "ami-cfdafaaa" #Aami for us-east-2
+      InstanceType: t2.micro
+      KeyName: thiethaa_aws
+      SecurityGroups:
+        - !Ref InstanceSecurityGroup
+        - thiethaa-group-demo
+  InstanceSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: "22"
+          ToPort: "22"
+          CidrIp: 0.0.0.0/0
